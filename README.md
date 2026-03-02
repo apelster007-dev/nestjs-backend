@@ -86,6 +86,12 @@ Together, the queue ensures orders are handled one-by-one, and the transaction w
 - **Soft deletes:** Products use `deletedAt`. Deleted products are excluded from catalog and categories but remain visible in past orders.
 - **Schema:** See `SCHEMA.md` for entity relationships and design choices.
 
+## Authentication & Authorization
+
+The test requirement specified attaching a user id in cart and order APIs. Instead of passing `userId` in paths or request bodies, this implementation uses **token-based authentication and authorization**. The server derives the current user from the JWT (Bearer token), so cart and order endpoints do not require or accept a user id—reducing coupling and improving security.
+
+**Auth implementation:** An initial auth version is in place using **username and password** (register/login). This will be updated later (e.g. additional providers or flows) as needed.
+
 ## Scripts
 
 | Command           | Description                |
